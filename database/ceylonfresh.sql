@@ -63,7 +63,6 @@ CREATE TABLE order_items (
 );
 
 -- Insert admin user (password_hash)
--- Note: Use PHP's password_hash('admin123', PASSWORD_DEFAULT) for the actual password
 INSERT INTO users (username, email, password, user_level, full_name, phone) 
 VALUES ('admin', 'admin@ceylonfresh.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', 'Administrator', '+94771234567');
 
@@ -113,3 +112,47 @@ INSERT INTO products (product_name, description, category_id, price, stock_quant
 ('Thalaguli', 'Sesame & jaggery sweet', 4, 180.00, 60),
 ('Kevum & Kokis', 'Traditional sweets', 4, 120.00, 50),
 ('Herbal Porridge (Kola Kenda)', 'Traditional herbal porridge', 4, 150.00, 45);
+
+
+-- Authentication 
+
+-- User Activity Log
+CREATE TABLE user_activity_log (
+    log_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT,
+    action VARCHAR(100) NOT NULL,
+    details TEXT,
+    ip_address VARCHAR(45),
+    user_agent TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Login Attempts (for brute force protection)
+CREATE TABLE login_attempts (
+    attempt_id INT PRIMARY KEY AUTO_INCREMENT,
+    ip_address VARCHAR(45) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX idx_ip_time (ip_address, created_at)
+);
+
+-- User Sessions (for session management)
+CREATE TABLE user_sessions (
+    session_id VARCHAR(128) PRIMARY KEY,
+    user_id INT NOT NULL,
+    ip_address VARCHAR(45),
+    user_agent TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_activity TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    expires_at TIMESTAMP NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    INDEX idx_user_id (user_id),
+    INDEX idx_expires (expires_at)
+);
+
+-- Add missing columns to users table if they don't exist
+ALTER TABLE users 
+ADD COLUMN IF NOT EXISTS is_active BOOLEAN DEFAULT TRUE,
+ADD COLUMN IF NOT EXISTS last_login TIMESTAMP NULL,
+ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
