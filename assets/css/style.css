@@ -134,3 +134,44 @@ hr { border: 0; height: 2px; background: linear-gradient(90deg, #ff0000, #00ff00
 .cuisine-card .btn { display: block; width: calc(100% - 3rem); margin: 1.5rem; padding: 12px; text-align: center; background: transparent; color: #041b0a; 
     border: 1px solid #041b0a; font-weight: 400; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s ease; font-size: 0.85rem; }
 .cuisine-card .btn:hover { background: #041b0a; color: #ffffff; }
+
+
+
+
+/* Mobile Response-------------------->*/
+@media (max-width: 1024px) { .features-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; } }
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-links { position: absolute; top: 100%; left: 0; right: 0; background: linear-gradient(135deg, #1f667a, #14504b); flex-direction: column; 
+    gap: 0; padding: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); transform: translateY(-100%); opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+  .nav-links.active { transform: translateY(0); opacity: 1; visibility: visible; }
+  .nav-links li { width: 100%; }
+  .nav-link { width: 100%; text-align: center; margin-bottom: 10px; padding: 15px; background: rgba(255, 255, 255, 0.05); }
+  .nav-link:hover { background: #0e303fff; }
+  .header-container { padding: 0 15px; }
+  .main-nav .nav-links { position: absolute; top: 60px; right: 0; background: rgba(3, 27, 3, 0.85); 
+    flex-direction: column; width: 200px; padding: 15px; gap: 10px; display: none; border-radius: 0 0 8px 8px; }
+  .main-nav .nav-links.active { display: flex; }
+  .footer-container { flex-direction: column; }
+  .footer-section, .footer-section-wide { min-width: 100%; }
+  .social-links { justify-content: flex-start; }
+  .hero { min-height: 70vh; }
+  .hero-content { padding: 2rem 1rem; }
+  .hero-content .btn { display: block; width: 100%; margin: 0 0 1rem 0; }
+  .product-showcase, .features { padding: 4rem 1rem; }
+  .cuisine-cards { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .features-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+@media (max-width: 480px) {
+  .site-header { padding: 10px 0; }
+  .logo h2 { font-size: 20px; }
+  .header-container { padding: 0 10px; }
+  .site-footer { padding: 20px 0 10px 0; }
+  .company-title, .footer-title { font-size: 18px; }
+  .footer-description { font-size: 14px; }
+  .hero-content { padding: 1.5rem 1rem; }
+  .cuisine-cards { grid-template-columns: 1fr; gap: 1.5rem; }
+  .product-showcase, .features { padding: 3rem 1rem; }
+}
+@media(max-width: 763px) { .footer-container { flex-direction: column; } .footer-section, .footer-section-wide { min-width: 100%; } .social-links { justify-content: flex-start; } }
+@media(max-width:480px) { .site-footer { padding: 20px 0 10px 0; } .company-title, .footer-title { font-size: 18px; } .footer-description { font-size: 14px; } }
