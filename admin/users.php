@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once _DIR_ . '/../database/connection.php';
+require_once __DIR__ . '/../database/connection.php';
 
 // Check if user is admin
 if (!isset($_SESSION['user_id']) || $_SESSION['user_level'] !== 'admin') {
