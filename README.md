@@ -41,42 +41,6 @@ The project was developed as part of an academic software development project wh
 
 ---
 
-## 🖥️ Screenshots
-
-### Home Page
-
-> *(Add Screenshot Here)*
-
-```
-screenshots/home.png
-```
-
-### Product Page
-
-> *(Add Screenshot Here)*
-
-```
-screenshots/products.png
-```
-
-### Shopping Cart
-
-> *(Add Screenshot Here)*
-
-```
-screenshots/cart.png
-```
-
-### Admin Dashboard
-
-> *(Add Screenshot Here)*
-
-```
-screenshots/admin-dashboard.png
-```
-
----
-
 ## 🏗️ Tech Stack
 
 ### Frontend
@@ -221,14 +185,6 @@ git push origin feature/NewFeature
 ## 📄 License
 
 This project is licensed under the MIT License.
-
----
-
-## 👨‍💻 Developer
-
-**Kaveesh Akalanka**
-
-- GitHub: https://github.com/kaveeshakalanka
 
 ---
 
